@@ -18,8 +18,7 @@ func Copy(mb MultiBuffer, buf []byte) int {
 	var num int = 0
 	for _, value := range mb {
 		if value != nil {
-			num += value.Len()
-
+			num += copy(buf, value.Bytes())
 		}
 	}
 	return num
