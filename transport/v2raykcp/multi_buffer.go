@@ -14,6 +14,17 @@ func ReleaseMulti(mb MultiBuffer) MultiBuffer {
 	return mb[:0]
 }
 
+func Copy(mb MultiBuffer, buf []byte) int {
+	var num int = 0
+	for _, value := range mb {
+		if value != nil {
+			num += value.Len()
+
+		}
+	}
+	return num
+}
+
 // SplitBytes splits the given amount of bytes from the beginning of the MultiBuffer.
 // It returns the new MultiBuffer leftover and number of bytes written into the input byte slice.
 func SplitBytes(mb MultiBuffer, b []byte) (MultiBuffer, int) {
@@ -50,4 +61,3 @@ func (mb MultiBuffer) IsEmpty() bool {
 	}
 	return true
 }
-
