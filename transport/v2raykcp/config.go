@@ -121,10 +121,7 @@ func (c *Config) GetSendingBufferSize() uint32 {
 
 func (c *Config) GetReceivingInFlightSize() uint32 {
 	size := c.GetDownlinkCapacityValue() * 1024 * 1024 / c.GetMTUValue() / (1000 / c.GetTTIValue())
-	if size < 8 {
-		size = 8
-	}
-	return size
+	return max(size, 8)
 }
 
 func (c *Config) GetReceivingBufferSize() uint32 {
